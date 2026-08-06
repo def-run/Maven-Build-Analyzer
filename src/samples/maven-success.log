@@ -1,0 +1,79 @@
+Apache Maven 3.9.9
+Maven home: /opt/apache-maven-3.9.9
+Java version: 21.0.3, vendor: Eclipse Adoptium
+OS name: "linux", version: "6.8.0", arch: "amd64"
+
+[INFO] Scanning for projects...
+[INFO]
+[INFO] --------------------< com.example:sample-app >--------------------
+[INFO] Building sample-app 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]--------------------------------
+
+[INFO]
+[INFO] --- clean:3.3.2:clean (default-clean) @ sample-app ---
+[INFO] Deleting /workspace/sample-app/target
+
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ sample-app ---
+[INFO] Copying 4 resources from src/main/resources to target/classes
+
+[INFO]
+[INFO] --- compiler:3.13.0:compile (default-compile) @ sample-app ---
+Downloading from central: https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar
+Downloaded from central: https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar (68 kB at 520 kB/s)
+
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 18 source files to /workspace/sample-app/target/classes
+
+[WARNING] /workspace/sample-app/src/main/java/com/example/service/UserService.java:[52,21]
+unchecked conversion
+  required: java.util.List<java.lang.String>
+  found:    java.util.List
+
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ sample-app ---
+[INFO] Copying 2 resources from src/test/resources to target/test-classes
+
+[INFO]
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ sample-app ---
+[INFO] Compiling 6 source files to /workspace/sample-app/target/test-classes
+
+[INFO]
+[INFO] --- surefire:3.5.0:test (default-test) @ sample-app ---
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.example.service.UserServiceTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.243 s
+
+Running com.example.controller.UserControllerTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.811 s
+
+Running com.example.repository.UserRepositoryTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.052 s
+
+Results:
+
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 1
+
+[INFO]
+[INFO] --- jacoco:0.8.12:report (report) @ sample-app ---
+[INFO] Loading execution data file /workspace/sample-app/target/jacoco.exec
+[INFO] Analyzed bundle 'sample-app' with 18 classes
+
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ sample-app ---
+[INFO] Building jar: /workspace/sample-app/target/sample-app-1.0.0-SNAPSHOT.jar
+
+[INFO]
+[INFO] --- install:3.1.3:install (default-install) @ sample-app ---
+[INFO] Installing /workspace/sample-app/pom.xml to ~/.m2/repository/com/example/sample-app/1.0.0-SNAPSHOT/sample-app-1.0.0-SNAPSHOT.pom
+[INFO] Installing /workspace/sample-app/target/sample-app-1.0.0-SNAPSHOT.jar to ~/.m2/repository/com/example/sample-app/1.0.0-SNAPSHOT/sample-app-1.0.0-SNAPSHOT.jar
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.864 s
+[INFO] Finished at: 2026-07-29T19:18:34Z
+[INFO] ------------------------------------------------------------------------

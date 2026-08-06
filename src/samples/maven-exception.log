@@ -1,0 +1,119 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.example:demo-app >-----------------------
+[INFO] Building demo-app 1.0.0
+[INFO] ------------------------------------------------------------------------
+
+[INFO] --- maven-compiler-plugin:3.11.0:compile (default-compile) @ demo-app ---
+
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project demo-app:
+org.apache.maven.plugin.compiler.CompilationFailureException: Compilation failure
+
+Caused by: java.lang.NoSuchMethodError:
+'java.lang.String com.example.model.User.getUserName()'
+
+    at com.example.service.UserService.loadUser(UserService.java:45)
+    at com.example.Application.main(Application.java:18)
+
+------------------------------------------------------------------------
+
+[INFO] --- maven-surefire-plugin:3.2.5:test (default-test) @ demo-app ---
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+
+Running com.example.UserServiceTest
+
+java.lang.NullPointerException: Cannot invoke "UserRepository.findById(Long)" because "userRepository" is null
+    at com.example.service.UserService.getUser(UserService.java:67)
+    at com.example.UserServiceTest.testGetUser(UserServiceTest.java:42)
+
+java.lang.AssertionError: expected:<SUCCESS> but was:<FAILED>
+    at org.junit.Assert.fail(Assert.java:89)
+    at org.junit.Assert.assertEquals(Assert.java:115)
+    at com.example.UserServiceTest.testCreateUser(UserServiceTest.java:58)
+
+------------------------------------------------------------------------
+
+[INFO] --- maven-dependency-plugin:3.6.0:resolve (default-cli) @ demo-app ---
+
+[ERROR] Failed to execute goal on project demo-app:
+org.eclipse.aether.resolution.DependencyResolutionException:
+Failed to collect dependencies
+
+Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException:
+Could not find artifact com.company:common-utils:jar:2.1.0
+
+    at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:425)
+    at org.eclipse.aether.internal.impl.DefaultRepositorySystem.resolveDependencies(DefaultRepositorySystem.java:357)
+
+------------------------------------------------------------------------
+
+[INFO] --- spring-boot-maven-plugin:3.3.0:run (default-cli) @ demo-app ---
+
+org.springframework.beans.factory.BeanCreationException:
+Error creating bean with name 'userService'
+
+Caused by:
+org.springframework.beans.factory.UnsatisfiedDependencyException:
+Error creating bean with name 'userRepository'
+
+Caused by:
+org.springframework.jdbc.CannotGetJdbcConnectionException:
+Failed to obtain JDBC Connection
+
+Caused by:
+java.sql.SQLNonTransientConnectionException:
+Communications link failure
+
+Caused by:
+java.net.ConnectException: Connection refused
+
+------------------------------------------------------------------------
+
+Exception in thread "main"
+java.lang.IllegalStateException: Failed to start application
+
+    at org.springframework.boot.SpringApplication.run(SpringApplication.java:780)
+
+Caused by:
+java.lang.IllegalArgumentException:
+Property 'spring.datasource.url' must not be empty
+
+    at org.springframework.util.Assert.hasText(Assert.java:289)
+
+------------------------------------------------------------------------
+
+[INFO] --- maven-jar-plugin:3.3.0:jar (default-jar) @ demo-app ---
+
+[ERROR] Failed to execute goal
+org.apache.maven.plugins:maven-jar-plugin:3.3.0:jar
+
+java.nio.file.AccessDeniedException:
+/workspace/demo-app/target/demo-app.jar
+
+    at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:90)
+    at java.base/java.nio.file.Files.newByteChannel(Files.java:380)
+
+------------------------------------------------------------------------
+
+[ERROR] BUILD FAILURE
+
+org.apache.maven.lifecycle.LifecycleExecutionException:
+Failed to execute goal
+org.apache.maven.plugins:maven-jar-plugin:3.3.0:jar
+
+Caused by:
+org.apache.maven.plugin.MojoExecutionException:
+Error assembling JAR
+
+Caused by:
+java.nio.file.AccessDeniedException:
+/workspace/demo-app/target/demo-app.jar
+
+------------------------------------------------------------------------
+
+[INFO] Total time: 2.731 s
+[INFO] Finished at: 2026-07-29T10:34:12Z
+[INFO] ------------------------------------------------------------------------
