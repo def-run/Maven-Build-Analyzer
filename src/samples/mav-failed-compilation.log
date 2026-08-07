@@ -1,0 +1,52 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.example:order-service >----------------------
+[INFO] Building order-service 2.3.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:3.2.0:clean (default-clean) @ order-service ---
+[INFO] Deleting /workspace/order-service/target
+[INFO]
+[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ order-service ---
+[INFO] Copying 8 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.11.0:compile (default-compile) @ order-service ---
+[INFO] Compiling 143 source files to /workspace/order-service/target/classes
+
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /workspace/order-service/src/main/java/com/example/service/OrderService.java:[87,25]
+cannot find symbol
+  symbol:   method calculateDiscount(java.math.BigDecimal)
+  location: variable pricingService of type com.example.service.PricingService
+
+[ERROR] /workspace/order-service/src/main/java/com/example/controller/OrderController.java:[54,18]
+incompatible types: java.lang.String cannot be converted to java.lang.Long
+
+[INFO] 2 errors
+[INFO] -------------------------------------------------------------
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18.452 s
+[INFO] Finished at: 2026-08-07T12:13:42+05:30
+[INFO] ------------------------------------------------------------------------
+
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project order-service: Compilation failure
+[ERROR]
+[ERROR] /workspace/order-service/src/main/java/com/example/service/OrderService.java:[87,25]
+[ERROR] cannot find symbol
+[ERROR]   symbol:   method calculateDiscount(java.math.BigDecimal)
+[ERROR]   location: variable pricingService of type com.example.service.PricingService
+[ERROR]
+[ERROR] /workspace/order-service/src/main/java/com/example/controller/OrderController.java:[54,18]
+[ERROR] incompatible types: java.lang.String cannot be converted to java.lang.Long
+[ERROR]
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] https://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
