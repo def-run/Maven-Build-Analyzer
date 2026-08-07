@@ -2,10 +2,11 @@ package org.demo.mavenbuildanalyzer.model;
 
 public enum FailureType {
     COMPILATION,
-    DEPENDENCY,
-    TEST,
-    SPRING_BOOT,
-    PLUGIN,
-    RUNTIME,
+    DEPENDENCY_RESOLUTION,
+    TEST_EXECUTION,
+    PLUGIN_EXECUTION,
+    APPLICATION_STARTUP,
+    PACKAGING,
+    DEPLOYMENT,
     UNKNOWN
 }

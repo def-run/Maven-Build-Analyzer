@@ -6,21 +6,19 @@ import org.demo.mavenbuildanalyzer.parser.MavenLogParser;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         MavenLogParser parser = new MavenLogParser();
 
-        String log = Files.readString(Path.of("src/samples/maven-exception.log"));
+        String log = Files.readString(Path.of("src/samples/maven-failed-dependency-resolution.log"));
 
         BuildAnalysis analysis = parser.parse(log);
 
         System.out.println(analysis.getBuildStatus());
+        System.out.println(analysis.getBuildTime());
+        System.out.println(analysis.getFinishedAt());
+        System.out.println(analysis.getFailureType());
         System.out.println();
-        System.out.println("EXCEPTIONS: ");
-        for(Map.Entry<String, String> e : analysis.getExceptionName().entrySet()) {
-            System.out.println(e);
-        }
     }
 }

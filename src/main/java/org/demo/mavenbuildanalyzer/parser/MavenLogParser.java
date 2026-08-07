@@ -1,7 +1,10 @@
 package org.demo.mavenbuildanalyzer.parser;
 
+import org.demo.mavenbuildanalyzer.classifier.FailureClassifier;
+import org.demo.mavenbuildanalyzer.classifier.FailureRule;
 import org.demo.mavenbuildanalyzer.model.BuildAnalysis;
 import org.demo.mavenbuildanalyzer.model.ExceptionInfo;
+import org.demo.mavenbuildanalyzer.model.FailureType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,9 @@ public class MavenLogParser {
 
         analysis.setBuildStatus(extractBuildStatus(lines));
         analysis.setExceptions(extractExceptions(lines));
+        analysis.setBuildTime(extractBuildTime(lines));
+        analysis.setFinishedAt(extractFinishedAt(lines));
+        analysis.setFailureType(extractFailureType(lines));
 
         return analysis;
     }
@@ -33,6 +39,34 @@ public class MavenLogParser {
             }
             if(line.equals("[ERROR] BUILD FAILURE")) {
                 return "FAILURE";
+            }
+        }
+
+        return "UNKNOWN";
+    }
+
+    private String extractBuildTime(String[] lines) {
+        for(String line : lines) {
+            line = line.trim();
+
+            if(line.startsWith("[INFO] Total time: ")) {
+                int index = line.indexOf(":");
+
+                return line.substring((index + 1)).trim();
+            }
+        }
+
+        return "UNKNOWN";
+    }
+
+    private String extractFinishedAt(String[] lines) {
+        for(String line : lines) {
+            line = line.trim();
+
+            if(line.startsWith("[INFO] Finished at: ")) {
+                int index = line.indexOf(":");
+
+                return line.substring((index + 1)).trim();
             }
         }
 
@@ -65,7 +99,9 @@ public class MavenLogParser {
         return info;
     }
 
-    private void extractRootCause() {
-        
+    private FailureType extractFailureType(String[] lines) {
+        FailureClassifier classifier = new FailureClassifier();
+
+        return classifier.classify(lines);
     }
 }

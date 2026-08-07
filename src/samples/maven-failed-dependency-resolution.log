@@ -1,0 +1,38 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.example:payment-service >----------------------
+[INFO] Building payment-service 1.4.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ payment-service ---
+[INFO] Copying 6 resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.11.0:compile (default-compile) @ payment-service ---
+[WARNING] The POM for com.example.libs:payment-utils:jar:2.1.5 is missing, no dependency information available
+Downloading from central: https://repo.maven.apache.org/maven2/com/example/libs/payment-utils/2.1.5/payment-utils-2.1.5.jar
+Downloading from company-repo: https://repo.company.com/maven/releases/com/example/libs/payment-utils/2.1.5/payment-utils-2.1.5.jar
+
+[ERROR] Failed to execute goal on project payment-service: Could not resolve dependencies for project com.example:payment-service:jar:1.4.0:
+[ERROR] Failed to collect dependencies at com.example.libs:payment-utils:jar:2.1.5
+[ERROR]
+[ERROR] Could not find artifact com.example.libs:payment-utils:jar:2.1.5 in central (https://repo.maven.apache.org/maven2)
+[ERROR] Could not find artifact com.example.libs:payment-utils:jar:2.1.5 in company-repo (https://repo.company.com/maven/releases)
+[ERROR]
+[ERROR] -> [Help 1]
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  6.872 s
+[INFO] Finished at: 2026-08-07T12:18:34+05:30
+[INFO] ------------------------------------------------------------------------
+
+[ERROR] Failed to execute goal on project payment-service:
+[ERROR] Could not resolve dependencies for project com.example:payment-service:jar:1.4.0
+[ERROR]
+[ERROR] Could not find artifact com.example.libs:payment-utils:jar:2.1.5
+[ERROR]
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] https://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
