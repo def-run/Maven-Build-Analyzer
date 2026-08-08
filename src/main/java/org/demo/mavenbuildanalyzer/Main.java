@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         MavenLogParser parser = new MavenLogParser();
 
-        String log = Files.readString(Path.of("src/samples/maven-failed-dependency-resolution.log"));
+        String log = Files.readString(Path.of("src/samples/maven-success.log"));
 
         BuildAnalysis analysis = parser.parse(log);
 
