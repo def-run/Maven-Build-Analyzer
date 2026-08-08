@@ -1,0 +1,49 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.example:demo-app >-----------------------
+[INFO] Building demo-app 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]--------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ demo-app ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO]
+[INFO] --- compiler:3.11.0:compile (default-compile) @ demo-app ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 24 source files to target/classes
+[ERROR] COMPILATION ERROR :
+[INFO] ------------------------------------------------------------------------
+[ERROR] /workspace/demo-app/src/main/java/com/example/service/UserService.java:[47,28]
+       cannot find symbol
+[ERROR]   symbol:   method findUserById(java.lang.Long)
+[ERROR]   location: variable userRepository of type com.example.repository.UserRepository
+[ERROR] ------------------------------------------------------------------------
+[INFO] 1 error
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.847 s
+[INFO] Finished at: 2026-08-09T01:28:43+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal
+org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile
+(default-compile) on project demo-app: Compilation failure
+[ERROR] /workspace/demo-app/src/main/java/com/example/service/UserService.java:[47,28]
+[ERROR] cannot find symbol
+[ERROR]   symbol:   method findUserById(java.lang.Long)
+[ERROR]   location: variable userRepository of type com.example.repository.UserRepository
+[ERROR] -> [Help 1]
+
+org.apache.maven.lifecycle.LifecycleExecutionException:
+Failed to execute goal
+org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile
+(default-compile) on project demo-app: Compilation failure
+
+Caused by: org.apache.maven.plugin.compiler.CompilationFailureException:
+Compilation failure:
+UserService.java:[47,28] cannot find symbol
+  symbol:   method findUserById(java.lang.Long)
+  location: variable userRepository of type UserRepository
+
+For more information about the errors and possible solutions, please read:
+[Help 1] https://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
