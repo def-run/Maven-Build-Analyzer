@@ -1,0 +1,25 @@
+[INFO] Scanning for projects...
+[INFO] ---------------------< com.acme:orders-api >---------------------
+[INFO] Building orders-api 12.3.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- deploy:3.1.3:deploy (default-deploy) @ orders-api ---
+[INFO] Using alternate deployment repository internal-releases::default::https://repo.acme.example/repository/releases
+[INFO] Uploading to internal-releases: https://repo.acme.example/repository/releases/com/acme/orders-api/12.3.0/orders-api-12.3.0.pom
+[INFO] Uploading to internal-releases: https://repo.acme.example/repository/releases/com/acme/orders-api/12.3.0/orders-api-12.3.0.jar
+[WARNING] Failed to upload metadata com.acme:orders-api/maven-metadata.xml
+[WARNING] Could not transfer metadata com.acme:orders-api/maven-metadata.xml from/to internal-releases: status code: 403, reason phrase: Forbidden (403)
+[ERROR] Failed to deploy artifacts: Could not transfer artifact com.acme:orders-api:pom:12.3.0 from/to internal-releases (https://repo.acme.example/repository/releases):
+[ERROR] status code: 401, reason phrase: Unauthorized (401)
+[ERROR] 
+[ERROR] Caused by: org.eclipse.aether.transfer.ArtifactTransferException:
+[ERROR] Could not transfer artifact com.acme:orders-api:pom:12.3.0 from/to internal-releases
+[ERROR] Caused by: org.apache.maven.wagon.authorization.AuthorizationException:
+[ERROR] Access denied for repository internal-releases
+[ERROR] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:3.1.3:deploy (default-deploy) on project orders-api:
+[ERROR] Failed to deploy artifacts: Could not transfer artifact com.acme:orders-api:pom:12.3.0
+[ERROR] -> [Help 1]

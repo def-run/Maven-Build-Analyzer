@@ -1,0 +1,26 @@
+[INFO] Scanning for projects...
+[INFO] --------------------< com.acme:reporting-service >--------------------
+[INFO] Building reporting-service 1.9.2
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.7.0:resolve (default-cli) @ reporting-service ---
+[INFO] The following artifacts have been resolved:
+[INFO]    org.slf4j:slf4j-api:jar:2.0.13:compile
+[INFO]    com.fasterxml.jackson.core:jackson-databind:jar:2.17.2:compile
+[INFO]    org.apache.commons:commons-lang3:jar:3.15.0:compile
+[INFO] 
+[WARNING] The POM for com.acme.internal:analytics-client:jar:7.4.1 is missing, no dependency information available
+[WARNING] The POM for com.acme.internal:metrics-sdk:jar:4.2.0 is missing, no dependency information available
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project reporting-service: Could not resolve dependencies for project com.acme:reporting-service:jar:1.9.2
+[ERROR] dependency: com.acme.internal:analytics-client:jar:7.4.1 (compile)
+[ERROR]     Could not find artifact com.acme.internal:analytics-client:jar:7.4.1 in internal-releases (https://repo.acme.example/repository/releases)
+[ERROR] dependency: com.acme.internal:metrics-sdk:jar:4.2.0 (compile)
+[ERROR]     Could not transfer artifact com.acme.internal:metrics-sdk:pom:4.2.0 from/to internal-releases (https://repo.acme.example/repository/releases): status code: 401, reason phrase: Unauthorized (401)
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException

@@ -1,0 +1,27 @@
+[INFO] Scanning for projects...
+[INFO] --------------------< com.acme:web-portal >--------------------
+[INFO] Building web-portal 3.6.1
+[INFO] --------------------------------[ war ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ web-portal ---
+[INFO] Copying 38 resources from src/main/resources to target/classes
+[INFO] Filtering enabled for 12 resources
+[INFO] 
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources (default-resources) on project web-portal:
+[ERROR] filtering /workspace/web-portal/src/main/resources/application.properties to /workspace/web-portal/target/classes/application.properties failed with MalformedInputException
+[ERROR] 
+[ERROR] Caused by: java.nio.charset.MalformedInputException: Input length = 1
+[ERROR]     at java.base/java.nio.charset.CoderResult.throwException(CoderResult.java:274)
+[ERROR]     at java.base/java.nio.charset.CharsetDecoder.decode(CharsetDecoder.java:820)
+[ERROR]     at org.apache.maven.shared.filtering.DefaultMavenReader.read(DefaultMavenReader.java:111)
+[ERROR]     at org.apache.maven.shared.filtering.MavenResourcesFiltering.filterResources(MavenResourcesFiltering.java:267)
+[ERROR]     at org.apache.maven.plugins.resources.ResourcesMojo.execute(ResourcesMojo.java:356)
+[ERROR]     at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
+[ERROR] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.091 s
+[INFO] Finished at: 2026-08-09T00:43:29+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.

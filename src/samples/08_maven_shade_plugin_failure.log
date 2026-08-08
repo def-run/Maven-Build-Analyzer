@@ -1,0 +1,29 @@
+[INFO] Scanning for projects...
+[INFO] ----------------------< com.acme:cli-tool >----------------------
+[INFO] Building cli-tool 2.5.7
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ cli-tool ---
+[INFO] Compiling 71 source files with javac [release 21] to target/classes
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ cli-tool ---
+[INFO] Building jar: /workspace/cli-tool/target/cli-tool-2.5.7.jar
+[INFO] 
+[INFO] --- shade:3.6.0:shade (default) @ cli-tool ---
+[INFO] Including org.yaml:snakeyaml:jar:2.2 in the shaded jar.
+[INFO] Including com.fasterxml.jackson.core:jackson-databind:jar:2.17.2 in the shaded jar.
+[WARNING] Discovered module-info.class. Shading will break its strong encapsulation.
+[WARNING] jackson-databind contains duplicate classes.
+[WARNING] maven-shade-plugin has detected duplicate resources.
+[ERROR] Error creating shaded jar: Problem shading JAR /workspace/cli-tool/target/cli-tool-2.5.7.jar entry META-INF/services/com.acme.spi.PluginProvider
+[ERROR] java.util.zip.ZipException: duplicate entry: META-INF/services/com.acme.spi.PluginProvider
+[ERROR]     at java.base/java.util.zip.ZipOutputStream.putNextEntry(ZipOutputStream.java:238)
+[ERROR]     at org.apache.maven.plugins.shade.shaded.org.apache.commons.io.output.CloseShieldOutputStream.close(CloseShieldOutputStream.java:74)
+[ERROR]     at org.apache.maven.plugins.shade.mojo.ShadeMojo.packageJar(ShadeMojo.java:654)
+[ERROR]     at org.apache.maven.plugins.shade.mojo.ShadeMojo.execute(ShadeMojo.java:592)
+[ERROR]     at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-shade-plugin:3.6.0:shade (default) on project cli-tool: Error creating shaded jar: duplicate entry: META-INF/services/com.acme.spi.PluginProvider
+[ERROR] -> [Help 1]

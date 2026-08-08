@@ -14,7 +14,7 @@ public class BuildAnalysis {
     public BuildAnalysis() {}
 
     public String getBuildStatus() {
-        return "STATUS: " + buildStatus;
+        return buildStatus;
     }
 
     public void setBuildStatus(String buildStatus) {
@@ -22,7 +22,7 @@ public class BuildAnalysis {
     }
 
     public String getBuildTime() {
-        return "BUILD TIME: " + buildTime;
+        return buildTime;
     }
 
     public void setBuildTime(String buildTime) {
@@ -30,15 +30,15 @@ public class BuildAnalysis {
     }
 
     public String getFinishedAt() {
-        return "FINISHED AT: " + finishedAt;
+        return finishedAt;
     }
 
     public void setFinishedAt(String finishedAt) {
         this.finishedAt = finishedAt;
     }
 
-    public String getFailureType() {
-        return "FAILURE TYPE: " + failureType;
+    public FailureType getFailureType() {
+        return failureType;
     }
 
     public void setFailureType(FailureType failureType) {

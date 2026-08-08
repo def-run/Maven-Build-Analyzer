@@ -1,0 +1,28 @@
+[INFO] Scanning for projects...
+[INFO] ----------------------< com.acme:legacy-batch >----------------------
+[INFO] Building legacy-batch 4.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-java-version) @ legacy-batch ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[ERROR] Rule 1: org.apache.maven.enforcer.rules.dependency.DependencyConvergence failed with message:
+[ERROR] Failed while enforcing RequireUpperBoundDeps. The following dependencies have conflicting versions:
+[ERROR]    org.apache.httpcomponents:httpclient:jar:4.5.14
+[ERROR]       paths to dependency are:
+[ERROR]       com.acme:legacy-batch:jar:4.0.0
+[ERROR]         +- com.acme:legacy-http-adapter:jar:2.8.1
+[ERROR]           +- org.apache.httpcomponents:httpclient:jar:4.5.14
+[ERROR]    org.apache.httpcomponents:httpclient:jar:4.5.13
+[ERROR]       paths to dependency are:
+[ERROR]       com.acme:legacy-batch:jar:4.0.0
+[ERROR]         +- com.acme:csv-importer:jar:1.7.3
+[ERROR]           +- org.apache.httpcomponents:httpclient:jar:4.5.13
+[ERROR] 
+[ERROR] Rule 2: org.apache.maven.enforcer.rules.dependency.BannedDependencies failed with message:
+[ERROR] com.acme:legacy-batch contains banned dependency org.apache.logging.log4j:log4j-core:2.17.1
+[ERROR] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:3.5.0:enforce (enforce-java-version) on project legacy-batch: Some Enforcer rules have failed. Look above for specific messages.
+[ERROR] -> [Help 1]

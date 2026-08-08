@@ -1,0 +1,57 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< com.acme:payment-service >-------------------
+[INFO] Building payment-service 5.1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ payment-service ---
+[INFO] Copying 9 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ payment-service ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 126 source files with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- surefire:3.5.0:test (default-test) @ payment-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Tests are skipped? false
+[INFO] Running com.acme.payment.PaymentAuthorizationTest
+[ERROR] Tests run: 8, Failures: 2, Errors: 1, Skipped: 0, Time elapsed: 4.291 s <<< FAILURE! -- in com.acme.payment.PaymentAuthorizationTest
+[ERROR] com.acme.payment.PaymentAuthorizationTest.authorizes_valid_card -- Time elapsed: 0.442 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <AUTHORIZED> but was: <DECLINED>
+    at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+    at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+    at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+    at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:114)
+    at com.acme.payment.PaymentAuthorizationTest.authorizes_valid_card(PaymentAuthorizationTest.java:94)
+
+[ERROR] com.acme.payment.PaymentAuthorizationTest.retries_transient_gateway_failure -- Time elapsed: 0.087 s <<< ERROR!
+java.lang.IllegalStateException: No qualifying bean of type 'com.acme.payment.GatewayClient' available
+    at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:351)
+    at com.acme.payment.PaymentAuthorizationTest.retries_transient_gateway_failure(PaymentAuthorizationTest.java:141)
+
+[ERROR] com.acme.payment.PaymentAuthorizationTest.refunds_duplicate_transaction -- Time elapsed: 0.129 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <409> but was: <500>
+    at com.acme.payment.PaymentAuthorizationTest.refunds_duplicate_transaction(PaymentAuthorizationTest.java:188)
+
+[INFO] Running com.acme.payment.PaymentControllerIntegrationTest
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.104 s - in com.acme.payment.PaymentControllerIntegrationTest
+[INFO] 
+[INFO] Results:
+[ERROR] Failures:
+[ERROR]   PaymentAuthorizationTest.authorizes_valid_card:94 expected: <AUTHORIZED> but was: <DECLINED>
+[ERROR]   PaymentAuthorizationTest.refunds_duplicate_transaction:188 expected: <409> but was: <500>
+[ERROR] Errors:
+[ERROR]   PaymentAuthorizationTest.retries_transient_gateway_failure:141 » IllegalState No qualifying bean
+[INFO] Tests run: 20, Failures: 2, Errors: 1, Skipped: 0
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.337 s
+[INFO] Finished at: 2026-08-09T00:42:03+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.0:test (default-test) on project payment-service: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /workspace/payment-service/target/surefire-reports for the individual test results.
+[ERROR] Please refer to dump files, if any, in /workspace/payment-service/target/surefire-reports/*.dump, *.dumpstream and *.dumpstream.
+[ERROR] -> [Help 1]
