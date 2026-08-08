@@ -8,5 +8,6 @@ public enum FailureType {
     APPLICATION_STARTUP,
     PACKAGING,
     DEPLOYMENT,
+    NO_FAILURE,
     UNKNOWN
 }
