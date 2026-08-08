@@ -1,13 +1,13 @@
 package org.demo.mavenbuildanalyzer.parser;
 
 import org.demo.mavenbuildanalyzer.classifier.FailureClassifier;
-import org.demo.mavenbuildanalyzer.classifier.FailureRule;
 import org.demo.mavenbuildanalyzer.model.BuildAnalysis;
 import org.demo.mavenbuildanalyzer.model.ExceptionInfo;
 import org.demo.mavenbuildanalyzer.model.FailureType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,7 +25,12 @@ public class MavenLogParser {
         analysis.setExceptions(extractExceptions(lines));
         analysis.setBuildTime(extractBuildTime(lines));
         analysis.setFinishedAt(extractFinishedAt(lines));
-        analysis.setFailureType(extractFailureType(lines));
+
+        if("STATUS: SUCCESS".equals(analysis.getBuildStatus())) {
+            analysis.setFailureType(FailureType.NO_FAILURE);
+        } else {
+            analysis.setFailureType(extractFailureType(lines));
+        }
 
         return analysis;
     }
