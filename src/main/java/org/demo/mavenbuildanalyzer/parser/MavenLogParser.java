@@ -7,7 +7,6 @@ import org.demo.mavenbuildanalyzer.model.FailureType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +14,12 @@ public class MavenLogParser {
 
     private static final Pattern EXCEPTION_PATTERN =
             Pattern.compile("([a-zA-Z_$][\\w$]*\\.)+[A-Z][\\w$]*(Exception|Error)");
+
+    private static final Pattern PLUGIN_PATTERN =
+            Pattern.compile("^\\[INFO\\] --- ([\\w.-]+):([\\w.-]+):([\\w.-]+) \\(([^)]+)\\) @ ([\\w.-]+) ---$");
+
+    private static final Pattern CURRENT_MODULE =
+            Pattern.compile("^\\[INFO\\].*<\\s*([^:]+):([^>]+)\\s*>.*$");
 
     public BuildAnalysis parse(String logs) {
         String[] lines = logs.split("\\R");
@@ -26,11 +31,13 @@ public class MavenLogParser {
         analysis.setBuildTime(extractBuildTime(lines));
         analysis.setFinishedAt(extractFinishedAt(lines));
 
-        if("STATUS: SUCCESS".equals(analysis.getBuildStatus())) {
+        if("SUCCESS".equals(analysis.getBuildStatus())) {
             analysis.setFailureType(FailureType.NO_FAILURE);
         } else {
             analysis.setFailureType(extractFailureType(lines));
         }
+
+        analysis.setPlugin(extractPlugin(lines));
 
         return analysis;
     }
@@ -39,10 +46,10 @@ public class MavenLogParser {
         for(String line : lines) {
             line = line.trim();
 
-            if(line.equals("[INFO] BUILD SUCCESS")) {
+            if(line.contains("[INFO] BUILD SUCCESS")) {
                 return "SUCCESS";
             }
-            if(line.equals("[ERROR] BUILD FAILURE")) {
+            if(line.contains("[ERROR] BUILD FAILURE") || line.contains("[INFO] BUILD FAILURE")) {
                 return "FAILURE";
             }
         }
@@ -54,7 +61,7 @@ public class MavenLogParser {
         for(String line : lines) {
             line = line.trim();
 
-            if(line.startsWith("[INFO] Total time: ")) {
+            if(line.contains("Total time: ")) {
                 int index = line.indexOf(":");
 
                 return line.substring((index + 1)).trim();
@@ -68,7 +75,7 @@ public class MavenLogParser {
         for(String line : lines) {
             line = line.trim();
 
-            if(line.startsWith("[INFO] Finished at: ")) {
+            if(line.contains("[INFO] Finished at: ")) {
                 int index = line.indexOf(":");
 
                 return line.substring((index + 1)).trim();
@@ -82,19 +89,23 @@ public class MavenLogParser {
         List<ExceptionInfo> info = new ArrayList<>();
 
 
-        for(String line : lines) {
+        for(int i = 0; i < lines.length; i++) {
+            String line = lines[i];
             line = line.trim();
-            Matcher matcher = EXCEPTION_PATTERN.matcher(line);
+            Matcher matcherException = EXCEPTION_PATTERN.matcher(line);
 
-            if(matcher.find()) {
+            if(matcherException.find()) {
                 ExceptionInfo exceptionInfo = new ExceptionInfo();
 
-                exceptionInfo.setName(matcher.group());
+                exceptionInfo.setName(matcherException.group());
 
-                String message = line.substring(matcher.end()).trim();
+                String message = line.substring(matcherException.end()).trim();
 
                 if(message.startsWith(":")) {
                     message = message.substring(1).trim();
+                }
+                if(message.isEmpty()) {
+                    message = "";
                 }
 
                 exceptionInfo.setMessage(message);
@@ -108,5 +119,28 @@ public class MavenLogParser {
         FailureClassifier classifier = new FailureClassifier();
 
         return classifier.classify(lines);
+    }
+
+    private String extractPlugin(String[] lines) {
+        String plugin = null;
+        for(String line : lines) {
+            line = line.trim();
+            Matcher matcherPlugin = PLUGIN_PATTERN.matcher(line);
+            Matcher matcherModule = CURRENT_MODULE.matcher(line);
+
+            if(matcherModule.find()) {
+                plugin = null;
+            }
+
+            if(matcherPlugin.find()) {
+                plugin = matcherPlugin.group(1);
+            }
+
+            if(line.contains("[ERROR] BUILD FAILURE") || line.contains("[INFO] BUILD FAILURE")) {
+                return plugin != null ? plugin : "UNKNOWN";
+            }
+        }
+
+        return "UNKNOWN";
     }
 }
