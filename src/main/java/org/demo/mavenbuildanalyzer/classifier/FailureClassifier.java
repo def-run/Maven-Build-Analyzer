@@ -238,6 +238,9 @@ public class FailureClassifier {
     public FailureType classify(String[] lines) {
         for(FailureRule rule : rules) {
             for(String line : lines) {
+                if(line.trim().startsWith("[WARNING]")) {
+                    continue;
+                }
                 if(rule.matches(line)) {
                     return rule.getFailureType();
                 }
