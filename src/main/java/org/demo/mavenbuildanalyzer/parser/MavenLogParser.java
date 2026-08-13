@@ -4,12 +4,14 @@ import org.demo.mavenbuildanalyzer.classifier.FailureClassifier;
 import org.demo.mavenbuildanalyzer.model.BuildAnalysis;
 import org.demo.mavenbuildanalyzer.model.ExceptionInfo;
 import org.demo.mavenbuildanalyzer.model.FailureType;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Component
 public class MavenLogParser {
 
     private static final Pattern EXCEPTION_PATTERN =
